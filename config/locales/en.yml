@@ -7,4 +7,4 @@ en:
         show_best_sellers: "Show Best Sellers in shop"
         max_best_sellers: "Max number of Best Sellers"
         show_best_sellers_sidebar: "Show Best Sellers in sidebar"
-        min_order_create_date: "Min number of Order created date"
+        min_order_create_date: "Min number of Order created date ago"
