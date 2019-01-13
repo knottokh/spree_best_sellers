@@ -5,7 +5,8 @@ module Spree
         @config      = Spree::BestSellersConfiguration.new
         @preferences = [:show_best_sellers,
                         :show_best_sellers_sidebar,
-                        :max_best_sellers
+                        :max_best_sellers,
+                        :min_order_create_date
                         ]
       end
 
