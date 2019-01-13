@@ -19,7 +19,7 @@ Spree::Product.class_eval do
     end
     
     unless min_order_create_date == 0
-      results = results.where("spree_orders.create_at >= ? ",num.send(min_order_create_date).days.ago)
+      results = results.where("spree_orders.created_at >= ? ",min_order_create_date.days.ago)
     end
 
     results = results.order("total_qty DESC").limit(num_max_best_sellers)
