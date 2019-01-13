@@ -6,6 +6,7 @@ Spree::Product.class_eval do
   def self.best_sellers
     config = Spree::BestSellersConfiguration.new
     num_max_best_sellers = config[:max_best_sellers] || 2
+    min_order_create_date = config[:min_order_create_date] || 30
 
 
     results = Spree::Product.active.select("spree_products.*, SUM(spree_line_items.quantity) as total_qty, spree_line_items.variant_id").
@@ -15,6 +16,10 @@ Spree::Product.class_eval do
 
     unless Spree::Config.show_products_without_price
       results = results.where("spree_prices.amount IS NOT NULL").where("spree_prices.currency" => Spree::Config[:currency])
+    end
+    
+    unless min_order_create_date == 0
+      results = results.where("spree_orders.create_at >= ? ",num.send(min_order_create_date).days.ago)
     end
 
     results = results.order("total_qty DESC").limit(num_max_best_sellers)
