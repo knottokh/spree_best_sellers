@@ -14,7 +14,7 @@ Spree::Product.class_eval do
         where("spree_orders.state = 'complete'")
     
     if results.present?
-        results.group("spree_products.id")
+        results = results.group("spree_products.id")
     end
         #group("spree_line_items.variant_id, spree_products.id")
 
