@@ -14,7 +14,7 @@ Spree::Product.class_eval do
         joins(:line_items).joins("INNER JOIN spree_orders ON spree_orders.id = spree_line_items.order_id").
         where("spree_orders.state = 'complete'")
     
-    if results.present?
+    if results.present? || !results.empty?
         results = results.group("spree_line_items.variant_id,spree_products.id")
     end
         #group("spree_line_items.variant_id, spree_products.id")
