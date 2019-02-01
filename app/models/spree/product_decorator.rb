@@ -11,7 +11,7 @@ Spree::Product.class_eval do
     begin
       results = Spree::Product.active.select("spree_products.*,spree_products.id, SUM(spree_line_items.quantity) as total_qty, spree_line_items.variant_id").
           joins(:line_items).joins("INNER JOIN spree_orders ON spree_orders.id = spree_line_items.order_id").
-          where("spree_orders.state = 'complete'").group("spree_products.id")
+          where("spree_orders.state = 'complete'").group("spree_products.id,spree_line_items.variant_id")
     end
     #if results.present? || !results.empty?
     #    results = results.group("spree_line_items.variant_id,spree_products.id")
