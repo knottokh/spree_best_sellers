@@ -4,6 +4,7 @@ Spree::Product.class_eval do
 
 
   def self.best_sellers
+    
     config = Spree::BestSellersConfiguration.new
     num_max_best_sellers = config[:max_best_sellers] || 2
     min_order_create_date = config[:min_order_create_date] || 30
